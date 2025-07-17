@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ title or "Visitor Stats" }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .total-count {
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background-color: #f1f3f5;
+    }
+
+    th,
+    td {
+      padding: 12px 18px;
+      text-align: left;
+      border-bottom: 1px solid #e0e6ed;
+    }
+
+    tr:hover {
+      background-color: #f9fcff;
+    }
+
+    th {
+      color: #5d6d7e;
+      font-size: 0.95em;
+    }
+
+    td {
+      color: #2d3436;
+    }
+
+    .empty-message {
+      text-align: center;
+      font-style: italic;
+      color: #888;
+    }
+
+    footer {
+      margin-top: 25px;
+      text-align: center;
+      color: #aaa;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>{{ title or "Visitor Statistics" }}</h1>
+
+    {% if visitors %}
+    <div class="total-count">
+      Total Visitors: {{ visitors | length }}
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Visitor Info</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for visitor in visitors %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ visitor }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="empty-message">No visitors yet. Be the first one!</p>
+    {% endif %}
+
+    <footer>
+      &copy; {{ title or "Stats Panel" }}
+    </footer>
+  </div>
+</body>
+</html>
